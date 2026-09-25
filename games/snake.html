@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Snake &middot; shrivatsan.games</title>
+<meta name="description" content="The arcade classic rebuilt with smooth canvas rendering and a speed dial.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="Snake &middot; shrivatsan.games">
+<meta property="og:description" content="The arcade classic rebuilt with smooth canvas rendering and a speed dial.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Verdana' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="blob blob--a"></div>
+  <div class="blob blob--b"></div>
+  <div class="blob blob--c"></div>
+  <div class="bg__noise"></div>
+</div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span class="brand-text">shrivatsan<em>.games</em></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" data-nav-menu aria-label="Primary">
+      <a href="../index.html#games" data-nav-link>Games</a>
+      <a href="../index.html#stats" data-nav-link>Stats</a>
+      <a href="../index.html#why" data-nav-link>Why</a>
+      <a href="../index.html#about" data-nav-link>About</a>
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="../index.html#games">Play free</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle type="button" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button class="icon-btn" data-nav-toggle type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="game-page">
+  <div class="shell">
+
+    <div class="game-head">
+      <div class="game-head__title">
+        <a class="backlink" href="../index.html#games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          All games
+        </a>
+        <div class="row" style="gap:14px">
+          <span class="game-icon" aria-hidden="true">&#128025;</span>
+          <h1>Snake</h1>
+        </div>
+        <p>Eat, grow, survive. Three paces, optional wall wrapping and a grid to help you plan your turns.</p>
+      </div>
+      <div class="game-head__side">
+        <button class="icon-btn" data-sound-toggle type="button" aria-pressed="true" aria-label="Toggle sound" title="Sound on">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+          </svg>
+        </button>
+        <a class="btn btn--soft btn--sm" href="../index.html">Home</a>
+      </div>
+    </div>
+
+    <div style="--tint:#8bff6a">
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Score</span><span class="hud__v" data-hud="score">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Length</span><span class="hud__v" data-hud="len">3</span></div>
+        <div class="hud__cell"><span class="hud__k">Speed</span><span class="hud__v" data-hud="speed">12</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Pace</span>
+          <div class="seg" role="group" aria-label="Speed">
+            <button type="button" data-speed="9" aria-pressed="false">Chill</button>
+            <button type="button" data-speed="13" aria-pressed="true">Classic</button>
+            <button type="button" data-speed="18" aria-pressed="false">Rapid</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <label class="switch">
+          <input type="checkbox" data-wrap>
+          <span class="switch__track"></span>
+          Wrap walls
+        </label>
+        <label class="switch">
+          <input type="checkbox" data-grid checked>
+          <span class="switch__track"></span>
+          Show grid
+        </label>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="snake-wrap">
+          <canvas data-canvas aria-label="Snake play area" role="img"></canvas>
+          <div class="pong-overlay" data-overlay>
+            <h2 data-overlay-title>Snake</h2>
+            <p data-overlay-text>Eat the food, grow longer, do not bite yourself. Every food is worth 10 points.</p>
+            <button class="btn btn--primary btn--lg" type="button" data-start>Play</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" type="button" data-start>Play</button>
+        <button class="btn btn--ghost" type="button" data-restart>Restart</button>
+      </div>
+
+      <p class="hint">Arrow keys or <kbd>WASD</kbd> to steer. Swipe on touch. <kbd>Space</kbd> pauses.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <a class="brand" href="../index.html">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand-text">shrivatsan<em>.games</em></span>
+      </a>
+      <p class="footer__note" style="margin-top:10px">Hand-coded arcade &middot; scores stay on your device.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="../index.html#games">Games</a>
+      <a href="../index.html#stats">Stats</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../js/core.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/games/snake.js"></script>
+</body>
+</html>

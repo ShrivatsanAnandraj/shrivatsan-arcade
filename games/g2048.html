@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2048 &middot; shrivatsan.games</title>
+<meta name="description" content="Slide and merge numbered tiles towards the legendary 2048 tile.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="2048 &middot; shrivatsan.games">
+<meta property="og:description" content="Slide and merge numbered tiles towards the legendary 2048 tile.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Verdana' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="blob blob--a"></div>
+  <div class="blob blob--b"></div>
+  <div class="blob blob--c"></div>
+  <div class="bg__noise"></div>
+</div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span class="brand-text">shrivatsan<em>.games</em></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" data-nav-menu aria-label="Primary">
+      <a href="../index.html#games" data-nav-link>Games</a>
+      <a href="../index.html#stats" data-nav-link>Stats</a>
+      <a href="../index.html#why" data-nav-link>Why</a>
+      <a href="../index.html#about" data-nav-link>About</a>
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="../index.html#games">Play free</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle type="button" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button class="icon-btn" data-nav-toggle type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="game-page">
+  <div class="shell">
+
+    <div class="game-head">
+      <div class="game-head__title">
+        <a class="backlink" href="../index.html#games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          All games
+        </a>
+        <div class="row" style="gap:14px">
+          <span class="game-icon" aria-hidden="true">&#128290;</span>
+          <h1>2048</h1>
+        </div>
+        <p>Arrow keys, WASD, swipes or the on-screen d-pad. Undo your last move when a corner trap ruins your run.</p>
+      </div>
+      <div class="game-head__side">
+        <button class="icon-btn" data-sound-toggle type="button" aria-pressed="true" aria-label="Toggle sound" title="Sound on">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+          </svg>
+        </button>
+        <a class="btn btn--soft btn--sm" href="../index.html">Home</a>
+      </div>
+    </div>
+
+    <div style="--tint:#00cdf0">
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Score</span><span class="hud__v" data-hud="score">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Moves</span><span class="hud__v" data-hud="moves">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Top tile</span><span class="hud__v" data-hud="top">2</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <button class="btn btn--primary btn--sm" type="button" data-new>New game</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-undo>Undo</button>
+        </div>
+        <span class="spacer"></span>
+        <span class="glass-chip">merge equal tiles to climb</span>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="g2048" data-board>
+          <div class="g2048__grid" aria-hidden="true">
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+            <div class="g2048__slot"></div><div class="g2048__slot"></div>
+          </div>
+          <div class="g2048__tiles" data-tiles></div>
+          <div class="g2048__win" data-win hidden>
+            <h2>2048 reached!</h2>
+            <p style="color:var(--text-2);max-width:34ch">Keep going for a bigger tile, or start fresh.</p>
+            <div class="row" style="justify-content:center">
+              <button class="btn btn--primary" type="button" data-keep-playing>Keep playing</button>
+              <button class="btn btn--ghost" type="button" data-new>New game</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dpad">
+          <button class="dpad__up" type="button" data-dir="up" aria-label="Move up">&#9650;</button>
+          <button class="dpad__left" type="button" data-dir="left" aria-label="Move left">&#9664;</button>
+          <button class="dpad__right" type="button" data-dir="right" aria-label="Move right">&#9654;</button>
+          <button class="dpad__down" type="button" data-dir="down" aria-label="Move down">&#9660;</button>
+        </div>
+      </div>
+
+      <p class="hint">Arrow keys or <kbd>WASD</kbd>. Swipe anywhere on the board.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <a class="brand" href="../index.html">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand-text">shrivatsan<em>.games</em></span>
+      </a>
+      <p class="footer__note" style="margin-top:10px">Hand-coded arcade &middot; scores stay on your device.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="../index.html#games">Games</a>
+      <a href="../index.html#stats">Stats</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../js/core.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/games/g2048.js"></script>
+</body>
+</html>

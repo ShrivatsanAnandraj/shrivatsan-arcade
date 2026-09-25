@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ping Pong &middot; shrivatsan.games</title>
+<meta name="description" content="Classic paddle game against an adaptive AI that reads your movement.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="Ping Pong &middot; shrivatsan.games">
+<meta property="og:description" content="Classic paddle game against an adaptive AI that reads your movement.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Verdana' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="blob blob--a"></div>
+  <div class="blob blob--b"></div>
+  <div class="blob blob--c"></div>
+  <div class="bg__noise"></div>
+</div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span class="brand-text">shrivatsan<em>.games</em></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" data-nav-menu aria-label="Primary">
+      <a href="../index.html#games" data-nav-link>Games</a>
+      <a href="../index.html#stats" data-nav-link>Stats</a>
+      <a href="../index.html#why" data-nav-link>Why</a>
+      <a href="../index.html#about" data-nav-link>About</a>
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="../index.html#games">Play free</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle type="button" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button class="icon-btn" data-nav-toggle type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="game-page">
+  <div class="shell">
+
+    <div class="game-head">
+      <div class="game-head__title">
+        <a class="backlink" href="../index.html#games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          All games
+        </a>
+        <div class="row" style="gap:14px">
+          <span class="game-icon" aria-hidden="true">&#127881;</span>
+          <h1>Ping Pong</h1>
+        </div>
+        <p>Mouse, touch or keyboard. Three difficulty tiers, rally counter, ball trails and a first-to-N match format.</p>
+      </div>
+      <div class="game-head__side">
+        <button class="icon-btn" data-sound-toggle type="button" aria-pressed="true" aria-label="Toggle sound" title="Sound on">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+          </svg>
+        </button>
+        <a class="btn btn--soft btn--sm" href="../index.html">Home</a>
+      </div>
+    </div>
+
+    <div style="--tint:#8bff6a">
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">You</span><span class="hud__v" data-hud="you">0</span></div>
+        <div class="hud__cell"><span class="hud__k">CPU</span><span class="hud__v" data-hud="cpu">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Rally</span><span class="hud__v" data-hud="rally">0</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">CPU</span>
+          <div class="seg" role="group" aria-label="Difficulty">
+            <button type="button" data-diff="0" aria-pressed="false">Rookie</button>
+            <button type="button" data-diff="1" aria-pressed="true">Pro</button>
+            <button type="button" data-diff="2" aria-pressed="false">Ace</button>
+          </div>
+        </div>
+        <div class="toolbar__group">
+          <span class="toolbar__label">Target</span>
+          <div class="seg" role="group" aria-label="Target score">
+            <button type="button" data-goal="7" aria-pressed="false">7</button>
+            <button type="button" data-goal="11" aria-pressed="true">11</button>
+            <button type="button" data-goal="15" aria-pressed="false">15</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <label class="switch">
+          <input type="checkbox" data-trails checked>
+          <span class="switch__track"></span>
+          Ball trail
+        </label>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="pong-wrap">
+          <canvas data-canvas aria-label="Ping pong table" role="img"></canvas>
+          <div class="pong-overlay" data-overlay>
+            <h2 data-overlay-title>Ping Pong</h2>
+            <p data-overlay-text>Move the mouse, drag with your finger, or use <kbd>&uarr;</kbd> <kbd>&darr;</kbd> / <kbd>W</kbd> <kbd>S</kbd>. First to the target score wins.</p>
+            <button class="btn btn--primary btn--lg" type="button" data-start>Start match</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" type="button" data-start>Start</button>
+        <button class="btn btn--ghost" type="button" data-pause>Pause</button>
+        <button class="btn btn--ghost" type="button" data-reset>Reset scores</button>
+      </div>
+
+      <p class="hint">The CPU tracks your paddle with a reaction delay that shrinks as difficulty climbs.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <a class="brand" href="../index.html">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand-text">shrivatsan<em>.games</em></span>
+      </a>
+      <p class="footer__note" style="margin-top:10px">Hand-coded arcade &middot; scores stay on your device.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="../index.html#games">Games</a>
+      <a href="../index.html#stats">Stats</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../js/core.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/games/pong.js"></script>
+</body>
+</html>

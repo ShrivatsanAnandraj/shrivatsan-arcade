@@ -1,10 +1,304 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="dark">
 <head>
-<title>Shrivatsan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shrivatsan.games — a pocket arcade of 8 hand-built games</title>
+<meta name="description" content="A free browser arcade: memory match, dice roller, 777 slots, ping pong vs AI, tic tac toe, snake, whack-a-mole and 2048. No sign-up, no ads, plays instantly.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="shrivatsan.games">
+<meta property="og:description" content="Eight hand-built browser games. Instant play, high scores saved locally.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Verdana' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>shrivatsan the best</h1>
-<h2><b>hello world</b></h2>
+
+<!-- ambient background -->
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="blob blob--a"></div>
+  <div class="blob blob--b"></div>
+  <div class="blob blob--c"></div>
+  <div class="bg__noise"></div>
+</div>
+
+<a href="#games" class="sr-only">Skip to games</a>
+
+<!-- ====================================================== nav ======== -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span class="brand-text">shrivatsan<em>.games</em></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" data-nav-menu aria-label="Primary">
+      <a href="#games" data-nav-link>Games</a>
+      <a href="#stats" data-nav-link>Stats</a>
+      <a href="#why" data-nav-link>Why</a>
+      <a href="#about" data-nav-link>About</a>
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="#games">Play free</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle type="button" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button class="icon-btn" data-nav-toggle type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================================================== hero ========= -->
+  <section class="hero">
+    <div class="shell hero__grid">
+      <div>
+        <span class="eyebrow">100% free &middot; no sign-up &middot; works offline</span>
+        <h1>
+          Eight games.
+          <span class="line2 grad-text">Zero loading.</span>
+        </h1>
+        <p class="hero__lede">
+          A hand-built browser arcade by Shrivatsan. Memory cards, dice, 777 slots,
+          ping pong against a real AI, snake, 2048 and more — all in pure
+          HTML, CSS and JavaScript. Your high scores stay on your device.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="games/memory.html">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Start playing
+          </a>
+          <a class="btn btn--soft btn--lg" href="#games">Browse all games</a>
+        </div>
+
+        <dl class="hero__meta">
+          <div><dt>Games</dt><dd data-stat-games>8</dd></div>
+          <div><dt>Plays</dt><dd data-stat-plays>0</dd></div>
+          <div><dt>Win rate</dt><dd data-stat-rate>0%</dd></div>
+          <div><dt>Local time</dt><dd data-clock>--:--</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__orbit"></div>
+        <div class="hero__core">
+          <b>8</b>
+          <span>games</span>
+        </div>
+        <div class="float-card float-card--1"><span class="emo">🃏</span><span class="lbl">Memory</span></div>
+        <div class="float-card float-card--2"><span class="emo">🎰</span><span class="lbl">Slots</span></div>
+        <div class="float-card float-card--3"><span class="emo">🐍</span><span class="lbl">Snake</span></div>
+        <div class="float-card float-card--4"><span class="emo">🏓</span><span class="lbl">Pong</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ marquee ========= -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Memory match</span><span>Dice roller</span><span>777 slots</span><span>Ping pong</span>
+      <span>Tic tac toe</span><span>Snake</span><span>Whack-a-mole</span><span>2048</span>
+      <span>Memory match</span><span>Dice roller</span><span>777 slots</span><span>Ping pong</span>
+      <span>Tic tac toe</span><span>Snake</span><span>Whack-a-mole</span><span>2048</span>
+    </div>
+  </div>
+
+  <!-- ================================================== games ========= -->
+  <section class="section" id="games">
+    <div class="shell">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">The full library</span>
+        <h2>Pick your poison</h2>
+        <p>
+          Every game is built from scratch — no engine, no framework, no ad
+          network. Click any card to play in fullscreen-friendly, responsive layout.
+        </p>
+      </div>
+
+      <!-- cards injected by js/main.js from SG.GAMES -->
+      <div class="games-grid" data-games-grid></div>
+
+      <p class="hint reveal" style="margin-top:26px">
+        Keyboard: press <kbd>1</kbd>–<kbd>8</kbd> to launch a game instantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================================== stats ========= -->
+  <section class="section--tight" id="stats">
+    <div class="shell">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">Your arcade</span>
+        <h2>Saved on this device</h2>
+        <p>No accounts, no servers. Scores and settings live in your browser's local storage.</p>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat">
+          <span class="stat__k">Total plays</span>
+          <span class="stat__v" data-stat-plays>0</span>
+          <span class="stat__h">rounds started</span>
+        </div>
+        <div class="stat">
+          <span class="stat__k">Wins</span>
+          <span class="stat__v" data-stat-wins>0</span>
+          <span class="stat__h">across all games</span>
+        </div>
+        <div class="stat">
+          <span class="stat__k">Win rate</span>
+          <span class="stat__v" data-stat-rate>0%</span>
+          <span class="stat__h">wins &divide; plays</span>
+        </div>
+        <div class="stat">
+          <span class="stat__k">Records</span>
+          <span class="stat__v" data-stat-bests>0</span>
+          <span class="stat__h">personal bests set</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== why ========= -->
+  <section class="section" id="why">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why it feels fast</span>
+        <h2>Small footprint, big polish</h2>
+        <p>Everything is static files. The whole arcade is a few kilobytes of hand-written
+           code, so it snaps open even on a slow connection.</p>
+      </div>
+
+      <div class="features">
+        <article class="feature reveal" style="--tint:#7c5cff">
+          <span class="feature__ic" aria-hidden="true">⚡</span>
+          <h3>Instant play</h3>
+          <p>No splash screens, no loading spinners, no installs. Open a page and start playing.</p>
+        </article>
+        <article class="feature reveal" style="--tint:#00cdf0">
+          <span class="feature__ic" aria-hidden="true">📱</span>
+          <h3>Touch &amp; keyboard</h3>
+          <p>Arrow keys, WASD, swipes and on-screen d-pads. Every game works on a phone.</p>
+        </article>
+        <article class="feature reveal" style="--tint:#ff4d9d">
+          <span class="feature__ic" aria-hidden="true">💾</span>
+          <h3>Local high scores</h3>
+          <p>Personal bests persist between visits, with a one-click reset if you want a clean slate.</p>
+        </article>
+        <article class="feature reveal" style="--tint:#8bff6a">
+          <span class="feature__ic" aria-hidden="true">🌗</span>
+          <h3>Dark &amp; light themes</h3>
+          <p>Follows your system by default, remembers your choice, and respects reduced motion.</p>
+        </article>
+        <article class="feature reveal" style="--tint:#ffc94d">
+          <span class="feature__ic" aria-hidden="true">🔊</span>
+          <h3>Synth sound effects</h3>
+          <p>Tiny WebAudio blips generated at runtime — arcade atmosphere with zero audio files.</p>
+        </article>
+        <article class="feature reveal" style="--tint:#ff8a3d">
+          <span class="feature__ic" aria-hidden="true">🧠</span>
+          <h3>Real AI opponents</h3>
+          <p>Pong predicts your paddle, tic tac toe uses minimax and never loses a won game.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== cta ========= -->
+  <section class="section--tight">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <span class="eyebrow">No gatekeeping</span>
+        <h2>Five minutes now, <span class="grad-text">eight games</span> later</h2>
+        <p>No email, no paywall, no "coming soon". Everything below works right now.</p>
+        <div class="row" style="justify-content:center">
+          <a class="btn btn--primary btn--lg" href="games/slots.html">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Try the slots
+          </a>
+          <a class="btn btn--soft btn--lg" href="games/pong.html">Challenge the AI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== about ========= -->
+  <section class="section" id="about">
+    <div class="shell">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow">Colophon</span>
+        <h2>Built by Shrivatsan</h2>
+        <p>
+          This site is a playground for front-end craft — hand-written CSS with a
+          custom-property design system, canvas for the real-time games, and
+          vanilla JavaScript for logic. Read the code, fork it, do better.
+        </p>
+      </div>
+      <div class="row reveal" style="justify-content:center">
+        <a class="btn btn--ghost" href="https://github.com/ShrivatsanAnandraj/shrivatsan-test" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          View source on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================================================== footer ======== -->
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand-text">shrivatsan<em>.games</em></span>
+      </a>
+      <p class="footer__note" style="margin-top:10px">
+        <b id="year">2026</b> &middot; Hand-coded arcade. No trackers, no cookies, no nonsense.
+      </p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#games">Games</a>
+      <a href="#stats">Stats</a>
+      <a href="#about">About</a>
+      <a href="#why">How it works</a>
+    </nav>
+
+    <div class="social">
+      <a href="https://github.com/ShrivatsanAnandraj/shrivatsan-test" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <button class="icon-btn theme-toggle" data-sound-toggle type="button" aria-pressed="true" aria-label="Toggle sound" title="Sound on">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script src="js/core.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
