@@ -90,10 +90,14 @@
   function setStatus(text) { $("[data-status]").textContent = text; }
 
   /* -------------------------------------------------------------- minimax */
-  /* returns a score from the perspective of `me` */
+  /* Negamax. `me` is the side to move and the return value is the score `me`
+     can force. After a move it is the opponent's turn, so the recursive value
+     is negated. Reaching a board where `me` is to move but the opponent has
+     already won is a loss for `me`, which is why the leaf returns depth - 10;
+     negating it in the parent turns that into 10 - depth, i.e. a fast win. */
   function minimax(board, me, depth) {
     var w = findWinner(board);
-    if (w.index >= 0) return w.who === me ? 10 - depth : depth - 10;
+    if (w.index >= 0) return depth - 10;
     if (isFull(board)) return 0;
     if (depth >= 9) return 0;
 
@@ -103,7 +107,7 @@
     for (var i = 0; i < 9; i++) {
       if (board[i]) continue;
       board[i] = me;
-      var score = minimax(board, me, depth + 1);
+      var score = -minimax(board, opp, depth + 1);
       board[i] = "";
       if (score > best) best = score;
     }
@@ -112,13 +116,14 @@
 
   /* pick the best move for `me`, with a little randomness on easy */
   function bestMove(me, easy) {
+    var opp = me === "X" ? "O" : "X";
     var moves = [];
     var bestScore = -Infinity;
 
     for (var i = 0; i < 9; i++) {
       if (state.cells[i]) continue;
       state.cells[i] = me;
-      var s = minimax(state.cells, me, 0);
+      var s = -minimax(state.cells, opp, 1);
       state.cells[i] = "";
       moves.push({ i: i, s: s });
       if (s > bestScore) bestScore = s;

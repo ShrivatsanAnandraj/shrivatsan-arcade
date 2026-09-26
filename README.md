@@ -2,7 +2,7 @@
 
 this is my own live arcade website
 
-A polished, responsive browser arcade — eight games, no frameworks, no build step.
+A polished, responsive browser arcade — fifteen games, no frameworks, no build step.
 Static HTML, CSS and vanilla JavaScript, hosted on GitHub Pages.
 
 Open `index.html` in a browser, or visit the live site.
@@ -19,6 +19,18 @@ Open `index.html` in a browser, or visit the live site.
 | Snake | Canvas Snake, speed ramps, high-score tracking |
 | Whack-a-Mole | 30 second timer, 3x3 grid, penalties for bombs |
 | 2048 | Undo, swipe + arrow keys, win at 2048, endless mode |
+| Breakout | Canvas paddle physics, brick levels, lives, level clear overlay |
+| Tetris | 7-bag randomiser, hold + next preview, ghost piece, level speed ramp |
+| Minesweeper | First-click safety, flood fill, flags, 3 difficulties, best times |
+| Connect Four | Negamax AI, 2-player mode, animated disc drops, session tally |
+| Wordle | Daily + free play, hard mode, tile cascade, answer + streak bests |
+| Flappy | Canvas one-button flight, adjustable gravity + gap, rank medals |
+| Lights Out | 5x5 / 6x6 / 7x7 boards, always-solvable generator, single hint |
+
+## Shortcuts
+
+On the landing page, `1`-`9` open the first nine games, `0` opens the tenth and
+`Shift`+`1`-`5` open the last five.
 
 ## Features
 
@@ -50,7 +62,7 @@ load `core.js` first.
 
 ## Editing a game page
 
-The eight pages under `games/` are generated. Edit the template blocks in
+The fifteen pages under `games/` are generated. Edit the template blocks in
 `tools/gen-pages.ps1`, then regenerate:
 
 ```powershell

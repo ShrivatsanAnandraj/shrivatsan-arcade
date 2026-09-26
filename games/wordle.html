@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wordle &middot; shrivatsan.games</title>
+<meta name="description" content="Guess the five letter word in six tries.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="Wordle &middot; shrivatsan.games">
+<meta property="og:description" content="Guess the five letter word in six tries.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%237c5cff'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Verdana' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/games.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg__grid"></div>
+  <div class="blob blob--a"></div>
+  <div class="blob blob--b"></div>
+  <div class="blob blob--c"></div>
+  <div class="bg__noise"></div>
+</div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span class="brand-text">shrivatsan<em>.games</em></span>
+    </a>
+
+    <nav class="nav__links" id="nav-menu" data-nav-menu aria-label="Primary">
+      <a href="../index.html#games" data-nav-link>Games</a>
+      <a href="../index.html#stats" data-nav-link>Stats</a>
+      <a href="../index.html#why" data-nav-link>Why</a>
+      <a href="../index.html#about" data-nav-link>About</a>
+      <a class="btn btn--primary btn--sm nav__cta-desktop" href="../index.html#games">Play free</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle type="button" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+      <button class="icon-btn" data-nav-toggle type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="game-page">
+  <div class="shell">
+
+    <div class="game-head">
+      <div class="game-head__title">
+        <a class="backlink" href="../index.html#games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          All games
+        </a>
+        <div class="row" style="gap:14px">
+          <span class="game-icon" aria-hidden="true">&#128221;</span>
+          <h1>Wordle</h1>
+        </div>
+        <p>Three state feedback for every letter, a hard mode that honours the hints you have already earned, plus a shared daily word so everyone plays the same puzzle.</p>
+      </div>
+      <div class="game-head__side">
+        <button class="icon-btn" data-sound-toggle type="button" aria-pressed="true" aria-label="Toggle sound" title="Sound on">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+          </svg>
+        </button>
+        <a class="btn btn--soft btn--sm" href="../index.html">Home</a>
+      </div>
+    </div>
+
+    <div style="--tint:#8bff6a">
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Guesses left</span><span class="hud__v" data-hud="left">6</span></div>
+        <div class="hud__cell"><span class="hud__k">Answer</span><span class="hud__v" data-hud="word">?????</span></div>
+        <div class="hud__cell"><span class="hud__k">Streak</span><span class="hud__v" data-hud="streak">0</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Mode</span>
+          <div class="seg" role="group" aria-label="Mode">
+            <button type="button" data-mode="daily" aria-pressed="true">Daily</button>
+            <button type="button" data-mode="free" aria-pressed="false">Free play</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <label class="switch">
+          <input type="checkbox" data-hard>
+          <span class="switch__track"></span>
+          Hard mode
+        </label>
+        <button class="btn btn--primary btn--sm" type="button" data-new>New word</button>
+      </div>
+
+      <div class="stage">
+        <div class="wordle">
+          <div class="wordle__board" data-board aria-label="Guess board"></div>
+
+          <div class="wordle__keys">
+            <div class="wordle__keyrow">
+              <button class="wkey" type="button" data-key="Q">Q</button><button class="wkey" type="button" data-key="W">W</button>
+              <button class="wkey" type="button" data-key="E">E</button><button class="wkey" type="button" data-key="R">R</button>
+              <button class="wkey" type="button" data-key="T">T</button><button class="wkey" type="button" data-key="Y">Y</button>
+              <button class="wkey" type="button" data-key="U">U</button><button class="wkey" type="button" data-key="I">I</button>
+              <button class="wkey" type="button" data-key="O">O</button><button class="wkey" type="button" data-key="P">P</button>
+            </div>
+            <div class="wordle__keyrow">
+              <button class="wkey" type="button" data-key="A">A</button><button class="wkey" type="button" data-key="S">S</button>
+              <button class="wkey" type="button" data-key="D">D</button><button class="wkey" type="button" data-key="F">F</button>
+              <button class="wkey" type="button" data-key="G">G</button><button class="wkey" type="button" data-key="H">H</button>
+              <button class="wkey" type="button" data-key="J">J</button><button class="wkey" type="button" data-key="K">K</button>
+              <button class="wkey" type="button" data-key="L">L</button>
+            </div>
+            <div class="wordle__keyrow">
+              <button class="wkey wkey--wide" type="button" data-key="DEL">Del</button>
+              <button class="wkey" type="button" data-key="Z">Z</button><button class="wkey" type="button" data-key="X">X</button>
+              <button class="wkey" type="button" data-key="C">C</button><button class="wkey" type="button" data-key="V">V</button>
+              <button class="wkey" type="button" data-key="B">B</button><button class="wkey" type="button" data-key="N">N</button>
+              <button class="wkey" type="button" data-key="M">M</button>
+              <button class="wkey wkey--wide" type="button" data-key="?">Enter</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">Type on your keyboard or tap the keys. <kbd>Enter</kbd> submits, <kbd>Backspace</kbd> deletes.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <a class="brand" href="../index.html">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand-text">shrivatsan<em>.games</em></span>
+      </a>
+      <p class="footer__note" style="margin-top:10px">Hand-coded arcade &middot; scores stay on your device.</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="../index.html#games">Games</a>
+      <a href="../index.html#stats">Stats</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../js/core.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/games/wordle.js"></script>
+</body>
+</html>

@@ -357,7 +357,6 @@
       youWon ? "Rematch" : "Try again",
       "Start match"
     );
-    $$("[data-start]").forEach(function (b) { b.textContent = youWon ? "Rematch" : "Try again"; });
     if (youWon) {
       SG.confetti.burst(160);
       SG.toast({

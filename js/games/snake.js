@@ -314,9 +314,12 @@
   function togglePause() {
     if (!state.running || state.over) return;
     state.paused = !state.paused;
-    $$("[data-start]").forEach(function (b) { b.textContent = state.paused ? "Resume" : "Pause"; });
-    if (state.paused) showOverlay("Paused", "Take your time.", "Resume");
-    else hideOverlay();
+    if (state.paused) {
+      showOverlay("Paused", "Take your time.", "Resume");
+    } else {
+      hideOverlay();
+      SG.sound.play("tap");
+    }
   }
 
   $$("[data-start]").forEach(function (b) { b.addEventListener("click", play); });

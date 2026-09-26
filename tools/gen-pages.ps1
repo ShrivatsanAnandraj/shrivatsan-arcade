@@ -541,6 +541,317 @@ $g2048 = @'
       <p class="hint">Arrow keys or <kbd>WASD</kbd>. Swipe anywhere on the board.</p>
 '@
 
+# --------------------------------------------------------------- breakout
+$breakout = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Score</span><span class="hud__v" data-hud="score">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Lives</span><span class="hud__v" data-hud="lives">3</span></div>
+        <div class="hud__cell"><span class="hud__k">Level</span><span class="hud__v" data-hud="level">1</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Lives</span>
+          <div class="seg" role="group" aria-label="Lives">
+            <button type="button" data-lives="3" aria-pressed="true">3</button>
+            <button type="button" data-lives="5" aria-pressed="false">5</button>
+          </div>
+        </div>
+        <div class="toolbar__group">
+          <span class="toolbar__label">Pace</span>
+          <div class="seg" role="group" aria-label="Ball speed">
+            <button type="button" data-speed="0.85" aria-pressed="false">Relaxed</button>
+            <button type="button" data-speed="1" aria-pressed="true">Normal</button>
+            <button type="button" data-speed="1.2" aria-pressed="false">Furious</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <span class="glass-chip">clear the wall for <b>+250 &times; level</b></span>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="breakout-wrap">
+          <canvas data-canvas aria-label="Breakout play area" role="img"></canvas>
+          <div class="pong-overlay" data-overlay>
+            <h2 data-overlay-title>Breakout</h2>
+            <p data-overlay-text>Move the mouse or drag to steer the paddle. <kbd>&larr;</kbd> <kbd>&rarr;</kbd> also work, and <kbd>Space</kbd> launches the ball.</p>
+            <button class="btn btn--primary btn--lg" type="button" data-start>Start game</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" type="button" data-start>Start</button>
+        <button class="btn btn--ghost" type="button" data-pause>Pause</button>
+      </div>
+
+      <p class="hint">Where the ball lands on the paddle steers the angle. Each wall cleared is worth more.</p>
+'@
+
+# ----------------------------------------------------------------- tetris
+$tetris = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Score</span><span class="hud__v" data-hud="score">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Lines</span><span class="hud__v" data-hud="lines">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Level</span><span class="hud__v" data-hud="level">1</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <button class="btn btn--primary btn--sm" type="button" data-new>New game</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-pause>Pause</button>
+        </div>
+        <span class="spacer"></span>
+        <label class="switch">
+          <input type="checkbox" data-ghost checked>
+          <span class="switch__track"></span>
+          Ghost piece
+        </label>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="tetris-wrap">
+          <canvas data-canvas aria-label="Tetris play area" role="img"></canvas>
+
+          <div class="tetris-side">
+            <div class="tetris-box">
+              <h3>Next</h3>
+              <div class="tetris-mini" data-next></div>
+            </div>
+            <div class="tetris-box">
+              <h3>Hold</h3>
+              <div class="tetris-mini" data-holdmini></div>
+            </div>
+            <div class="tetris-box">
+              <h3>Controls</h3>
+              <div class="tetris-keys">
+                <span>Move <kbd>&larr;</kbd> <kbd>&rarr;</kbd></span>
+                <span>Rotate <kbd>&uarr;</kbd></span>
+                <span>Soft drop <kbd>&darr;</kbd></span>
+                <span>Hard drop <kbd>Space</kbd></span>
+                <span>Hold <kbd>C</kbd></span>
+                <span>Pause <kbd>P</kbd></span>
+              </div>
+            </div>
+            <div class="tpad">
+              <span></span><button type="button" data-trotate aria-label="Rotate">&#8635;</button><span></span>
+              <button type="button" data-tmove="-1" aria-label="Move left">&#9664;</button><span class="tpad__mid"></span><button type="button" data-tmove="1" aria-label="Move right">&#9654;</button>
+              <span></span><button type="button" data-tdrop aria-label="Hard drop">&#9660;</button><span></span>
+            </div>
+            <button class="btn btn--ghost btn--sm" type="button" data-thold>Hold piece</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pong-overlay" data-overlay style="position:static;margin-top:18px">
+        <h2 data-overlay-title>Tetris</h2>
+        <p data-overlay-text>Stack the blocks and clear four lines at a time. <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>&uarr;</kbd> rotate &middot; <kbd>&darr;</kbd> soft drop &middot; <kbd>Space</kbd> hard drop &middot; <kbd>C</kbd> hold.</p>
+        <button class="btn btn--primary btn--lg" type="button" data-start>Start game</button>
+      </div>
+
+      <p class="hint">Clearing four lines at once is a <strong>Tetris</strong> and scores four times as much. Speed climbs every ten lines.</p>
+'@
+
+# ----------------------------------------------------------------- flappy
+$flappy = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Score</span><span class="hud__v" data-hud="score">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Pipes</span><span class="hud__v" data-hud="pipes">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Rank</span><span class="hud__v" data-hud="medal">🎖️ Rookie</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Gravity</span>
+          <div class="seg" role="group" aria-label="Gravity">
+            <button type="button" data-gravity="0.34" aria-pressed="false">Floaty</button>
+            <button type="button" data-gravity="0.42" aria-pressed="true">Normal</button>
+            <button type="button" data-gravity="0.52" aria-pressed="false">Heavy</button>
+          </div>
+        </div>
+        <div class="toolbar__group">
+          <span class="toolbar__label">Gap</span>
+          <div class="seg" role="group" aria-label="Pipe gap">
+            <button type="button" data-gap="150" aria-pressed="false">Wide</button>
+            <button type="button" data-gap="132" aria-pressed="true">Normal</button>
+            <button type="button" data-gap="116" aria-pressed="false">Tight</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage stage--bare" style="margin-top:4px">
+        <div class="flappy-wrap">
+          <canvas data-canvas aria-label="Flappy play area" role="img"></canvas>
+          <div class="pong-overlay" data-overlay>
+            <h2 data-overlay-title>Flappy</h2>
+            <p data-overlay-text>Tap the sky or press <kbd>Space</kbd> to rise, let go to fall. One wrong touch and it is over.</p>
+            <button class="btn btn--primary btn--lg" type="button" data-start>Start flying</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary btn--lg" type="button" data-start>Flap</button>
+      </div>
+
+      <p class="hint">Tap anywhere on the sky, or press <kbd>Space</kbd>. Medals: 10 bronze, 20 silver, 30 gold.</p>
+'@
+
+# ------------------------------------------------------------------ mines
+$mines = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Mines</span><span class="hud__v" data-hud="mines">10</span></div>
+        <div class="hud__cell"><span class="hud__k">Flags</span><span class="hud__v" data-hud="flags">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Time</span><span class="hud__v" data-hud="time">0</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Board</span>
+          <div class="seg" role="group" aria-label="Difficulty">
+            <button type="button" data-level="beginner" aria-pressed="true">Beginner</button>
+            <button type="button" data-level="easy" aria-pressed="false">Easy</button>
+            <button type="button" data-level="hard" aria-pressed="false">Hard</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <span class="glass-chip">first click is always safe</span>
+      </div>
+
+      <div class="stage">
+        <div class="mines-grid" data-grid style="--cols:9;--rows:9" role="grid" aria-label="Minefield"></div>
+        <div class="actions">
+          <button class="btn btn--primary" type="button" data-new>New board</button>
+        </div>
+        <p class="hint">Click to reveal. Right-click or <kbd>F</kbd> to flag. Click a number with the right flags to chord.</p>
+      </div>
+'@
+
+# ----------------------------------------------------------------- wordle
+$wordle = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Guesses left</span><span class="hud__v" data-hud="left">6</span></div>
+        <div class="hud__cell"><span class="hud__k">Answer</span><span class="hud__v" data-hud="word">?????</span></div>
+        <div class="hud__cell"><span class="hud__k">Streak</span><span class="hud__v" data-hud="streak">0</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Mode</span>
+          <div class="seg" role="group" aria-label="Mode">
+            <button type="button" data-mode="daily" aria-pressed="true">Daily</button>
+            <button type="button" data-mode="free" aria-pressed="false">Free play</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <label class="switch">
+          <input type="checkbox" data-hard>
+          <span class="switch__track"></span>
+          Hard mode
+        </label>
+        <button class="btn btn--primary btn--sm" type="button" data-new>New word</button>
+      </div>
+
+      <div class="stage">
+        <div class="wordle">
+          <div class="wordle__board" data-board aria-label="Guess board"></div>
+
+          <div class="wordle__keys">
+            <div class="wordle__keyrow">
+              <button class="wkey" type="button" data-key="Q">Q</button><button class="wkey" type="button" data-key="W">W</button>
+              <button class="wkey" type="button" data-key="E">E</button><button class="wkey" type="button" data-key="R">R</button>
+              <button class="wkey" type="button" data-key="T">T</button><button class="wkey" type="button" data-key="Y">Y</button>
+              <button class="wkey" type="button" data-key="U">U</button><button class="wkey" type="button" data-key="I">I</button>
+              <button class="wkey" type="button" data-key="O">O</button><button class="wkey" type="button" data-key="P">P</button>
+            </div>
+            <div class="wordle__keyrow">
+              <button class="wkey" type="button" data-key="A">A</button><button class="wkey" type="button" data-key="S">S</button>
+              <button class="wkey" type="button" data-key="D">D</button><button class="wkey" type="button" data-key="F">F</button>
+              <button class="wkey" type="button" data-key="G">G</button><button class="wkey" type="button" data-key="H">H</button>
+              <button class="wkey" type="button" data-key="J">J</button><button class="wkey" type="button" data-key="K">K</button>
+              <button class="wkey" type="button" data-key="L">L</button>
+            </div>
+            <div class="wordle__keyrow">
+              <button class="wkey wkey--wide" type="button" data-key="DEL">Del</button>
+              <button class="wkey" type="button" data-key="Z">Z</button><button class="wkey" type="button" data-key="X">X</button>
+              <button class="wkey" type="button" data-key="C">C</button><button class="wkey" type="button" data-key="V">V</button>
+              <button class="wkey" type="button" data-key="B">B</button><button class="wkey" type="button" data-key="N">N</button>
+              <button class="wkey" type="button" data-key="M">M</button>
+              <button class="wkey wkey--wide" type="button" data-key="?">Enter</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">Type on your keyboard or tap the keys. <kbd>Enter</kbd> submits, <kbd>Backspace</kbd> deletes.</p>
+      </div>
+'@
+
+# --------------------------------------------------------------------- c4
+$c4 = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">You</span><span class="hud__v" data-hud="you">0</span></div>
+        <div class="hud__cell"><span class="hud__k">CPU</span><span class="hud__v" data-hud="cpu">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Draws</span><span class="hud__v" data-hud="draw">0</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Mode</span><span class="hud__v" data-hud="mode">vs CPU</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Mode</span>
+          <div class="seg" role="group" aria-label="Mode">
+            <button type="button" data-mode="ai" aria-pressed="true">Vs CPU</button>
+            <button type="button" data-mode="friend" aria-pressed="false">Two players</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <span class="glass-chip">you are <b style="color:var(--bad)">red</b> &middot; CPU is <b style="color:var(--primary)">blue</b></span>
+      </div>
+
+      <div class="stage">
+        <div class="c4-board" data-board role="grid" aria-label="Connect Four board"></div>
+        <div class="actions">
+          <button class="btn btn--primary" type="button" data-new>New game</button>
+        </div>
+        <p class="hint" data-status role="status">Your move &mdash; pick a column.</p>
+      </div>
+'@
+
+# -------------------------------------------------------------- lightsout
+$lightsout = @'
+      <div class="hud">
+        <div class="hud__cell"><span class="hud__k">Moves</span><span class="hud__v" data-hud="moves">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Lamps on</span><span class="hud__v" data-hud="lit">0</span></div>
+        <div class="hud__cell"><span class="hud__k">Board</span><span class="hud__v" data-hud="size">5x5</span></div>
+        <div class="hud__cell hud__cell--accent"><span class="hud__k">Best</span><span class="hud__v" data-hud="best">&mdash;</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__group">
+          <span class="toolbar__label">Board</span>
+          <div class="seg" role="group" aria-label="Board size">
+            <button type="button" data-level="easy" aria-pressed="false">4&times;4</button>
+            <button type="button" data-level="classic" aria-pressed="true">5&times;5</button>
+            <button type="button" data-level="hard" aria-pressed="false">7&times;7</button>
+          </div>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn btn--ghost btn--sm" type="button" data-hint>Hint</button>
+        <button class="btn btn--primary btn--sm" type="button" data-new>New board</button>
+      </div>
+
+      <div class="stage">
+        <div class="lo-grid" data-grid style="--size:5" role="group" aria-label="Lights out board"></div>
+        <p class="hint" data-status role="status">Turn every lamp off.</p>
+      </div>
+
+      <p class="hint">Toggling a lamp also flips its four neighbours. Every board is generated to be solvable. <kbd>H</kbd> for a hint, <kbd>N</kbd> for a new board.</p>
+'@
+
 # ------------------------------------------------------------------ specs
 $games = @(
   @{ id = "memory"; icon = "&#127183;"; tint = "#7c5cff";
@@ -581,7 +892,42 @@ $games = @(
   @{ id = "g2048"; icon = "&#128290;"; tint = "#00cdf0";
      h1 = "2048"; desc = "Slide and merge numbered tiles towards the legendary 2048 tile.";
      lede = "Arrow keys, WASD, swipes or the on-screen d-pad. Undo your last move when a corner trap ruins your run.";
-     body = $g2048 }
+     body = $g2048 },
+
+  @{ id = "breakout"; icon = "&#129522;"; tint = "#ff4d6d";
+     h1 = "Breakout"; desc = "Bounce the ball, shatter every brick and keep your lives.";
+     lede = "Paddle with the mouse, touch or arrow keys. The wall grows a row taller and the ball picks up speed with every level you clear.";
+     body = $breakout },
+
+  @{ id = "tetris"; icon = "&#128268;"; tint = "#7c5cff";
+     h1 = "Tetris"; desc = "Stack falling tetrominoes and clear four lines at once.";
+     lede = "Seven piece bag randomiser so the sequence always feels fair, hard drop, hold slot and a ghost piece showing exactly where your piece will land.";
+     body = $tetris },
+
+  @{ id = "mines"; icon = "&#128163;"; tint = "#ff8a3d";
+     h1 = "Minesweeper"; desc = "Clear the board without detonating a mine.";
+     lede = "Three difficulties, flagging, chording and a first click that is always safe. Your fastest time per board is kept as your personal best.";
+     body = $mines },
+
+  @{ id = "c4"; icon = "&#127922;"; tint = "#00cdf0";
+     h1 = "Connect Four"; desc = "Drop the discs and line up four before your opponent does.";
+     lede = "A negamax engine with a threat scan for the AI, or hot seat for two players on one device. Win lines light up so you always know what happened.";
+     body = $c4 },
+
+  @{ id = "wordle"; icon = "&#128221;"; tint = "#8bff6a";
+     h1 = "Wordle"; desc = "Guess the five letter word in six tries.";
+     lede = "Three state feedback for every letter, a hard mode that honours the hints you have already earned, plus a shared daily word so everyone plays the same puzzle.";
+     body = $wordle },
+
+  @{ id = "flappy"; icon = "&#128038;"; tint = "#ffc94d";
+     h1 = "Flappy"; desc = "Thread the pipes and keep the bird in the air.";
+     lede = "One tap to flap, gravity doing the rest. Two gap sizes, a medal for every score you clear, and a best score that follows you across devices.";
+     body = $flappy },
+
+  @{ id = "lightsout"; icon = "&#128161;"; tint = "#ff4d9d";
+     h1 = "Lights Out"; desc = "Flip every lamp off on grids up to seven by seven.";
+     lede = "Pressing a lamp toggles its four neighbours too. Every board is generated from random presses, which means every board is guaranteed solvable.";
+     body = $lightsout }
 )
 
 $count = 0

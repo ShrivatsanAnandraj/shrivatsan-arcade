@@ -6,7 +6,10 @@
   "use strict";
 
   var $ = SG.$, $$ = SG.$$;
-  var ORDER = ["memory", "dice", "slots", "pong", "ttt", "snake", "mole", "g2048"];
+  var ORDER = [
+    "memory", "dice", "slots", "pong", "ttt", "snake", "mole", "g2048",
+    "breakout", "tetris", "mines", "c4", "wordle", "flappy", "lightsout"
+  ];
 
   /* ------------------------------------------------------- sticky nav */
   var nav = $(".nav");
@@ -117,7 +120,14 @@
       ttt:   "Outsmart an unbeatable engine or pass the device. Perfect play never loses.",
       snake: "Classic snake, modern speed. Dodge, grow and set a new high score before you crash.",
       mole:  "Fast hands, faster moles. Thirty seconds, rising difficulty, one very satisfying bonk.",
-      g2048: "Slide the tiles, chase the 2048 tile. Swipe on touch, arrow keys on desktop."
+      g2048: "Slide the tiles, chase the 2048 tile. Swipe on touch, arrow keys on desktop.",
+      breakout: "Smash every brick before you run out of lives. Mouse, touch or arrow keys to move.",
+      tetris: "Seven piece bag, hard drop, hold slot and a ghost piece. Clear four lines at once.",
+      mines: "Three difficulties, chording and a guaranteed safe first click. Race your best time.",
+      c4: "Drop discs against a negamax engine, or play hot seat. Four in a row takes it.",
+      wordle: "Six tries, three state feedback and a hard mode. A shared daily word too.",
+      flappy: "One tap to flap. Thread the pipes, collect medals and chase your best score.",
+      lightsout: "Flip every lamp off on boards up to 7x7. Every board is guaranteed solvable."
     };
 
     var bests = SG.scores.all();
@@ -135,7 +145,7 @@
           "<h3>" + g.name + "</h3>" +
           "<p>" + BLURB[id] + "</p>" +
           '<div class="gcard__foot">' +
-            '<span class="gcard__best">' + g.bestLabel + " <b data-best=\"" + id + "\">" +
+            '<span class="gcard__best">' + g.bestLabel + ' <b data-best="' + id + '">' +
               (best ? best.label : "—") + "</b></span>" +
             '<span class="gcard__go">Play <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
               'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -185,13 +195,28 @@
   }
 
   /* --------------------------------------------------- keyboard shortcuts */
+  /* 1-9 open the first nine games, 0 opens the tenth, Shift+1..5 the last five. */
+  /* Shift turns digits into punctuation in e.key (!@#$%), so the digit row is
+     read from e.code, which stays "Digit1".."Digit0" for every layout. */
+  function slotFromKey(e) {
+    var code = e.code || "";
+    var digit = null;
+    if (/^Digit[0-9]$/.test(code)) digit = code.slice(5);
+    else if (/^Numpad[0-9]$/.test(code)) digit = code.slice(6);
+    else if (/^[0-9]$/.test(e.key)) digit = e.key;
+    if (digit === null) return 0;
+    if (e.shiftKey) return digit === "0" ? 0 : 10 + parseInt(digit, 10);
+    return digit === "0" ? 10 : parseInt(digit, 10);
+  }
+
   if (grid) {
     doc.addEventListener("keydown", function (e) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       var t = e.target;
       if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
-      var n = parseInt(e.key, 10);
+      var n = slotFromKey(e);
       if (n >= 1 && n <= ORDER.length) {
+        e.preventDefault();
         win.location.href = "games/" + ORDER[n - 1] + ".html";
       }
     });
@@ -204,7 +229,7 @@
       SG.toast({
         icon: "🎮",
         title: "Welcome to the arcade",
-        sub: "Press 1–8 to jump straight into a game.",
+        sub: "Press 1–0 for the first ten, Shift+1–5 for the rest.",
         duration: 4600
       });
     }, 1200);

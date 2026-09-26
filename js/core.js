@@ -443,7 +443,14 @@
     ttt:    { name: "Tic Tac Toe",   icon: "⭕", tint: "#ffc94d", bestLabel: "wins" },
     snake:  { name: "Snake",         icon: "🐍", tint: "#8bff6a", bestLabel: "best score" },
     mole:   { name: "Whack-a-Mole",  icon: "🔨", tint: "#ff8a3d", bestLabel: "best score" },
-    g2048:  { name: "2048",          icon: "🔢", tint: "#00cdf0", bestLabel: "best score" }
+    g2048:  { name: "2048",          icon: "🔢", tint: "#00cdf0", bestLabel: "best score" },
+    breakout:  { name: "Breakout",      icon: "🧱", tint: "#ff4d6d", bestLabel: "best score" },
+    tetris:    { name: "Tetris",        icon: "🧊", tint: "#7c5cff", bestLabel: "best score" },
+    mines:     { name: "Minesweeper",   icon: "💣", tint: "#ff8a3d", bestLabel: "fastest" },
+    c4:        { name: "Connect Four",  icon: "🔴", tint: "#00cdf0", bestLabel: "wins" },
+    wordle:    { name: "Wordle",        icon: "📝", tint: "#8bff6a", bestLabel: "fewest tries" },
+    flappy:    { name: "Flappy",        icon: "🐦", tint: "#ffc94d", bestLabel: "best score" },
+    lightsout: { name: "Lights Out",    icon: "💡", tint: "#ff4d9d", bestLabel: "fewest moves" }
   };
 
   /* --------------------------------------------------------- boot: theme */

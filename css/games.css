@@ -969,3 +969,299 @@
   .toolbar { gap: 10px; }
   .seg button { padding: 6px 11px; font-size: 0.78rem; }
 }
+
+/* ==========================================================================
+   Breakout
+   ========================================================================== */
+.breakout-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #070b14;
+  box-shadow: var(--shadow);
+}
+.breakout-wrap canvas { display: block; width: 100%; height: auto; touch-action: none; }
+
+/* ==========================================================================
+   Tetris
+   ========================================================================== */
+.tetris-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .tetris-wrap { grid-template-columns: minmax(0, 1fr); }
+}
+.tetris-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: #06090f;
+  box-shadow: var(--shadow);
+  touch-action: none;
+}
+.tetris-side { display: grid; gap: 12px; }
+.tetris-box {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  padding: 10px 12px;
+}
+.tetris-box h3 {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tetris-mini { display: flex; gap: 4px; min-height: 62px; align-items: center; }
+.tetris-mini i {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  background: var(--line-strong);
+}
+.tetris-keys { display: grid; gap: 4px; }
+.tetris-keys span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.tpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tpad button {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: var(--r-sm);
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.tpad button:active { background: var(--surface-2); }
+.tpad__mid { visibility: hidden; }
+
+/* ==========================================================================
+   Flappy
+   ========================================================================== */
+.flappy-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flappy-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Minesweeper
+   ========================================================================== */
+.mines-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 9), minmax(0, 1fr));
+  gap: 3px;
+  width: min(100%, calc(var(--cols, 9) * 42px));
+  margin-inline: auto;
+  padding: 10px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  touch-action: manipulation;
+}
+.cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: linear-gradient(160deg, var(--surface-2), var(--surface-2));
+  color: var(--text);
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: clamp(0.7rem, 2.2vw, 1rem);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  user-select: none;
+  transition: background 120ms var(--ease), transform 90ms var(--ease);
+}
+.cell:hover:not(:disabled) { background: var(--surface-2); transform: translateY(-1px); }
+.cell.is-open {
+  background: color-mix(in oklab, var(--bg-soft) 70%, var(--surface));
+  cursor: default;
+  transform: none;
+}
+.cell.is-flag { background: color-mix(in oklab, var(--warn) 18%, var(--surface-2)); }
+.cell.is-mine { background: color-mix(in oklab, var(--bad) 26%, var(--surface-2)); }
+.cell.is-wrong { background: color-mix(in oklab, var(--bad) 34%, var(--surface-2)); }
+.cell.is-n1 { color: var(--primary); }
+.cell.is-n2 { color: var(--good); }
+.cell.is-n3 { color: var(--warn); }
+.cell.is-n4 { color: var(--tint, var(--cyan-300)); }
+.cell.is-n5, .cell.is-n6, .cell.is-n7, .cell.is-n8 { color: var(--bad); }
+
+/* ==========================================================================
+   Wordle
+   ========================================================================== */
+.wordle { display: grid; gap: 14px; justify-items: center; }
+.wordle__board {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 340px);
+}
+.wordle__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.wordle__row.is-shake { animation: rowShake 420ms var(--ease); }
+.wordle__cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: transparent;
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  text-transform: uppercase;
+  transition: border-color 120ms var(--ease), background 160ms var(--ease);
+}
+.wordle__cell.is-filled { border-color: var(--muted); }
+.wordle__cell.is-revealed { border-color: transparent; }
+.wordle__cell.is-exact { background: var(--good); border-color: var(--good); color: #04120a; }
+.wordle__cell.is-present { background: var(--warn); border-color: var(--warn); color: #1a1200; }
+.wordle__cell.is-absent { background: color-mix(in oklab, var(--line-strong) 70%, transparent); border-color: transparent; color: var(--muted); }
+@keyframes rowShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+.wordle__keys { display: grid; gap: 6px; width: min(100%, 480px); }
+.wordle__keyrow { display: flex; gap: 4px; justify-content: center; }
+.wkey {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 2px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(0.7rem, 2.4vw, 0.9rem);
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.wkey:hover { background: var(--line-strong); }
+.wkey--wide { flex: 1.6 1 0; font-size: 0.72rem; }
+.wkey.is-exact { background: var(--good); color: #04120a; }
+.wkey.is-present { background: var(--warn); color: #1a1200; }
+.wkey.is-absent { background: color-mix(in oklab, var(--line-strong) 60%, transparent); color: var(--muted); }
+
+/* ==========================================================================
+   Connect Four
+   ========================================================================== */
+.c4-board {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  width: min(100%, 460px);
+  margin-inline: auto;
+  padding: 12px;
+  border-radius: var(--r);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-2));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.c4-cell {
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, var(--bg-soft), color-mix(in oklab, var(--bg-soft) 82%, #000));
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: transparent;
+  font-size: 0.1rem;
+  transition: transform 120ms var(--ease);
+}
+.c4-cell:hover:not(:disabled) { transform: translateY(-2px); }
+.c4-cell.is-p1, .c4-cell.is-p2 {
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.34), 0 2px 6px rgba(0, 0, 0, 0.3);
+  animation: c4Drop 220ms var(--ease) both;
+}
+.c4-cell.is-p1 { background: radial-gradient(circle at 32% 28%, #ff7a9c, var(--bad)); }
+.c4-cell.is-p2 { background: radial-gradient(circle at 32% 28%, #6fd0ff, var(--primary)); }
+.c4-cell.is-win { box-shadow: 0 0 0 3px var(--warn), 0 0 20px var(--warn); }
+@keyframes c4Drop {
+  from { transform: translateY(-16px) scale(0.86); }
+  to { transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   Lights Out
+   ========================================================================== */
+.lo-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--size, 5), minmax(0, 1fr));
+  gap: 7px;
+  width: min(100%, calc(var(--size, 5) * 68px));
+  margin-inline: auto;
+  padding: 12px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.lo-cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--bg-soft) 82%, var(--surface));
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: background 130ms var(--ease), box-shadow 130ms var(--ease);
+}
+.lo-cell::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--line-strong) 60%, transparent);
+  transition: background 130ms var(--ease), box-shadow 130ms var(--ease);
+}
+.lo-cell:hover { border-color: var(--line-strong); }
+.lo-cell.is-on {
+  background: color-mix(in oklab, var(--warn) 22%, var(--surface-2));
+  border-color: color-mix(in oklab, var(--warn) 55%, transparent);
+}
+.lo-cell.is-on::after {
+  background: var(--warn);
+  box-shadow: 0 0 16px 2px color-mix(in oklab, var(--warn) 70%, transparent);
+}
+.lo-cell.is-hint {
+  border-color: var(--tint, var(--primary));
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--tint, var(--primary)) 60%, transparent);
+}
